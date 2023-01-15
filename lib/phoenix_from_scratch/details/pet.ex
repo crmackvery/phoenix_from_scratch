@@ -1,4 +1,4 @@
-defmodule PhoenixFromScratch.Schemas.Pet do
+defmodule PhoenixFromScratch.Details.Pet do
 
   use PhoenixFromScratch.Schema
 
@@ -11,5 +11,5 @@ defmodule PhoenixFromScratch.Schemas.Pet do
     timestamps()
   end
 
-  
+
 end

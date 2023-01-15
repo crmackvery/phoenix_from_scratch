@@ -1,6 +1,10 @@
 # PhoenixFromScratch
 
-A sandbox for figuring out how to create a new Elixir/Phoenix project
+A sandbox for figuring out how to create a new Elixir/Phoenix project.
+
+This is a place for me to learn how to create a new Phoenix project from scratch and add important tooling/features on top of the vanilla project.
+
+See [the docs dir](docs/) for more details on various aspects of a basic Elixir/Phoenix application.
 
 ## Getting Started
 
@@ -25,6 +29,8 @@ A sandbox for figuring out how to create a new Elixir/Phoenix project
 - [] Admin login/authentication
 - [] Cloud provider
 - [] Terraform
+- [] Formatting; mix format.credo
+- [] Docker deployments
 
 
 ## Tools/Libraries Used

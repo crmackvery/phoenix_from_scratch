@@ -29,7 +29,8 @@ A sandbox for figuring out how to create a new Elixir/Phoenix project
 
 ## Tools/Libraries Used
 
-| Tool                                  | Useage                          |
-| ------------------------------------- | ------------------------------- |
-| [asdf](https://asdf-vm.com)           | Tool version manager            |
-| [Docker](https://www.docker.com)      | Containers                      |
+| Tool / Library                                      | Useage                          |
+| --------------------------------------------------- | ------------------------------- |
+| [asdf](https://asdf-vm.com)                         | Tool version manager            |
+| [Docker](https://www.docker.com)                    | Containers                      |
+| [Guardian](https://github.com/ueberauth/guardian)   | Authentication                  |

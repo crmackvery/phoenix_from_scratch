@@ -13,4 +13,8 @@ defmodule PhoenixFromScratch.Accounts do
     |> Admin.registration_changeset(attrs)
     |> Repo.insert()
   end
+
+  def get_admin!(id) do
+    
+  end
 end

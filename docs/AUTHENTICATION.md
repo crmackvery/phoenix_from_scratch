@@ -66,9 +66,9 @@ Finally, in the newly created `admin.ex` and `admin_token.ex` schemas, switch `u
 With all of these changes, the following steps need to be run: 
 
 1. `mix deps.get` to fetch the new dependencies
-2. 'mix ecto.setup' to create the database (or `mix ecto.migrate' if you already have a database)
+2. `mix ecto.setup` to create the database (or `mix ecto.migrate` if you already have a database)
 3. `mix test` to make sure everything worked properly
-4. 'iex -S mix phx.server' to start the server and confirm you see the register/login links
+4. `iex -S mix phx.server` to start the server and confirm you see the register/login links
 
 ## Next Steps
 
@@ -76,7 +76,7 @@ The above examples show how to add an Admin account type. You may repeat as desi
 
 ### Authenticate a Route
 
-The primary purpose of authentication is ensuring only those accounts which should have access to certain pages do. This is handled in (router.ex)[/lib/phoenix_from_scratch_web/router.ex] using the `require_authenticated_<ROLE>` tag.
+The primary purpose of authentication is ensuring only those accounts which should have access to certain pages do. This is handled in [router.ex](/lib/phoenix_from_scratch_web/router.ex) using the `require_authenticated_<ROLE>` tag.
 
 In order to prevent any non-admins from accessing the `/pets` page and viewing all user's pets, we can add the following:
 

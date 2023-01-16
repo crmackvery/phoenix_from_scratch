@@ -1,6 +1,6 @@
 # Creating Database Tables
 
-We use the built in `phx.gen.auth` to generate new account types (see [authentication docs][./AUTHENTICATION.md]). 
+We use the built in `phx.gen.auth` to generate new account types (see [authentication docs](./AUTHENTICATION.md)). 
 
 Phoenix has another built-in for creating non-account tables: `phx.gen.html` Like `phx.gen.auth`, `html` is a shortcut to provide you with the files needed to create and view a new table: migration, schema, context, controller, and views
 
@@ -42,4 +42,4 @@ Remember to update your repository by running migrations:
 
 ## Result
 
-At this point, you should be able to navigate to your (local server)[http://localhost:4000/pets] and see the default page for viewing a schema in Phoenix.
+At this point, you should be able to navigate to your [local server](http://localhost:4000/pets) and see the default page for viewing a schema in Phoenix.

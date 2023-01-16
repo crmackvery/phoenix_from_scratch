@@ -1,6 +1,8 @@
 defmodule PhoenixFromScratchWeb.Router do
   use PhoenixFromScratchWeb, :router
 
+  import PhoenixFromScratchWeb.UserAuth
+
   import PhoenixFromScratchWeb.AdminAuth
 
   pipeline :browser do
@@ -10,6 +12,7 @@ defmodule PhoenixFromScratchWeb.Router do
     plug :put_root_layout, {PhoenixFromScratchWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug :fetch_current_user
     plug :fetch_current_admin
   end
 
@@ -42,6 +45,7 @@ defmodule PhoenixFromScratchWeb.Router do
       pipe_through :browser
 
       live_dashboard "/dashboard", metrics: PhoenixFromScratchWeb.Telemetry
+      resources "/pets", PhoenixFromScratchWeb.PetController
     end
   end
 
@@ -88,5 +92,38 @@ defmodule PhoenixFromScratchWeb.Router do
     post "/admins/confirm", AdminConfirmationController, :create
     get "/admins/confirm/:token", AdminConfirmationController, :edit
     post "/admins/confirm/:token", AdminConfirmationController, :update
+  end
+
+  ## Authentication routes
+
+  scope "/", PhoenixFromScratchWeb do
+    pipe_through [:browser, :redirect_if_user_is_authenticated]
+
+    get "/users/register", UserRegistrationController, :new
+    post "/users/register", UserRegistrationController, :create
+    get "/users/log_in", UserSessionController, :new
+    post "/users/log_in", UserSessionController, :create
+    get "/users/reset_password", UserResetPasswordController, :new
+    post "/users/reset_password", UserResetPasswordController, :create
+    get "/users/reset_password/:token", UserResetPasswordController, :edit
+    put "/users/reset_password/:token", UserResetPasswordController, :update
+  end
+
+  scope "/", PhoenixFromScratchWeb do
+    pipe_through [:browser, :require_authenticated_user]
+
+    get "/users/settings", UserSettingsController, :edit
+    put "/users/settings", UserSettingsController, :update
+    get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email
+  end
+
+  scope "/", PhoenixFromScratchWeb do
+    pipe_through [:browser]
+
+    delete "/users/log_out", UserSessionController, :delete
+    get "/users/confirm", UserConfirmationController, :new
+    post "/users/confirm", UserConfirmationController, :create
+    get "/users/confirm/:token", UserConfirmationController, :edit
+    post "/users/confirm/:token", UserConfirmationController, :update
   end
 end

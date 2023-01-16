@@ -23,6 +23,44 @@ Once run, this generates a slew of automated files and updates existing files, s
 - Adds Register/Login links on your main landing page/menus
 - Unit tests
 
+## Custom Primary Key
+
+We prefer a custom UUID as the primary key, so we need to inject a small bit of code into the auto-generated migration. When the admin table is created, we need to specify that we don't want the default primary key but rather to use a uuid. The net result of this will be the following migration
+
+```
+defmodule PhoenixFromScratch.Repo.Migrations.CreateAdminsAuthTables do
+  use Ecto.Migration
+
+  def change do
+    execute "CREATE EXTENSION IF NOT EXISTS citext", ""
+
+    create table(:admins, primary_key: false) do
+      add :id, :binary_id, primary_key: true
+      add :email, :citext, null: false
+      add :hashed_password, :string, null: false
+      add :confirmed_at, :naive_datetime
+      timestamps()
+    end
+
+    create unique_index(:admins, [:email])
+
+    create table(:admins_tokens, primary_key: false) do
+      add :id, :binary_id, primary_key: true
+      add :admin_id, references(:admins, type: :binary_id, on_delete: :delete_all), null: false
+      add :token, :binary, null: false
+      add :context, :string, null: false
+      add :sent_to, :string
+      timestamps(updated_at: false)
+    end
+
+    create index(:admins_tokens, [:admin_id])
+    create unique_index(:admins_tokens, [:context, :token])
+  end
+end
+```
+
+Finally, in the newly created `admin.ex` and `admin_token.ex` schemas, switch `use Ecto.Schema` to `use PhoenixFromScratch.Schema` which has some code to auto-insert a UUID in the `id` field.
+
 ## Finish Creating Account Type
 
 With all of these changes, the following steps need to be run: 
@@ -34,10 +72,12 @@ With all of these changes, the following steps need to be run:
 
 ## Next Steps
 
+The above examples show how to add an Admin account type. You may repeat as desired for other account types such as User, Researcher, etc...
+
+### Authenticate a Route
 
 
 ## TODOs
 
-- [] Fill out Next Steps: how to require authentication for a particular route
-- [] Try this with a second account type and update as necessary to mention its behavior
+- [] Fill out Authenticate a Route
 - [] Auto-generate an admin for dev when build/deploy?

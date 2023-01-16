@@ -26,6 +26,12 @@ defmodule PhoenixFromScratchWeb.Router do
     get "/", PageController, :index
   end
 
+  scope "/", PhoenixFromScratchWeb do
+    pipe_through [:browser, :require_authenticated_admin]
+
+    resources "/pets", PetController
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", PhoenixFromScratchWeb do
   #   pipe_through :api

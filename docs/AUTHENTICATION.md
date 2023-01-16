@@ -76,8 +76,22 @@ The above examples show how to add an Admin account type. You may repeat as desi
 
 ### Authenticate a Route
 
+The primary purpose of authentication is ensuring only those accounts which should have access to certain pages do. This is handled in (router.ex)[/lib/phoenix_from_scratch_web/router.ex] using the `require_authenticated_<ROLE>` tag.
+
+In order to prevent any non-admins from accessing the `/pets` page and viewing all user's pets, we can add the following:
+
+```
+scope "/", PhoenixFromScratchWeb do
+  pipe_through [:browser, :require_authenticated_admin]
+
+  resources "/pets", PetController
+end
+```
+
+This works in conjunction with the `fetch_current_admin` plug that is added to the `:browser` pipeline at the top of the router.ex file. This has already been added when we created the new account types.
+
+This route says that anybody trying to access `/pets` must be an authenticated admin. If they are, the `PetController` is server, if they are not then they get redirected to a login page.
 
 ## TODOs
 
-- [] Fill out Authenticate a Route
 - [] Auto-generate an admin for dev when build/deploy?

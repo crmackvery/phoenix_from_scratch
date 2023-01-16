@@ -2,7 +2,7 @@
 
 A sandbox for figuring out how to create a new Elixir/Phoenix project.
 
-This is a place for me to learn how to create a new Phoenix project from scratch and add important tooling/features on top of the vanilla project.
+This is a place for me to learn how to create a new Phoenix project from scratch and add important tooling/features on top of the vanilla project. The goal is to utilize as much built-in Elixir/Phoenix tooling as possible, adding outside dependencies only as necessary.
 
 See [the docs dir](docs/) for more details on various aspects of a basic Elixir/Phoenix application.
 
@@ -24,9 +24,9 @@ See [the docs dir](docs/) for more details on various aspects of a basic Elixir/
 - [x] Basic project setup
 - [x] Docker for local Postgres
 - [x] First migration
-- [] Display table data (choose library)
-- [] Accounts: admin, user
-- [] Admin login/authentication
+- [x] Display table data (choose library)
+- [x] Accounts: admin, user
+- [x] Admin login/authentication
 - [] Cloud provider
 - [] Terraform
 - [] Formatting; mix format.credo

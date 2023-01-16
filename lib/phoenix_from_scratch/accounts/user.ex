@@ -1,8 +1,8 @@
-defmodule PhoenixFromScratch.Accounts.Admin do
+defmodule PhoenixFromScratch.Accounts.User do
   use PhoenixFromScratch.Schema
   import Ecto.Changeset
 
-  schema "admins" do
+  schema "users" do
     field :email, :string
     field :password, :string, virtual: true, redact: true
     field :hashed_password, :string, redact: true
@@ -12,7 +12,7 @@ defmodule PhoenixFromScratch.Accounts.Admin do
   end
 
   @doc """
-  A admin changeset for registration.
+  A user changeset for registration.
 
   It is important to validate the length of both email and password.
   Otherwise databases may truncate the email without warnings, which
@@ -28,8 +28,8 @@ defmodule PhoenixFromScratch.Accounts.Admin do
       validations on a LiveView form), this option can be set to `false`.
       Defaults to `true`.
   """
-  def registration_changeset(admin, attrs, opts \\ []) do
-    admin
+  def registration_changeset(user, attrs, opts \\ []) do
+    user
     |> cast(attrs, [:email, :password])
     |> validate_email()
     |> validate_password(opts)
@@ -70,12 +70,12 @@ defmodule PhoenixFromScratch.Accounts.Admin do
   end
 
   @doc """
-  A admin changeset for changing the email.
+  A user changeset for changing the email.
 
   It requires the email to change otherwise an error is added.
   """
-  def email_changeset(admin, attrs) do
-    admin
+  def email_changeset(user, attrs) do
+    user
     |> cast(attrs, [:email])
     |> validate_email()
     |> case do
@@ -85,7 +85,7 @@ defmodule PhoenixFromScratch.Accounts.Admin do
   end
 
   @doc """
-  A admin changeset for changing the password.
+  A user changeset for changing the password.
 
   ## Options
 
@@ -96,8 +96,8 @@ defmodule PhoenixFromScratch.Accounts.Admin do
       validations on a LiveView form), this option can be set to `false`.
       Defaults to `true`.
   """
-  def password_changeset(admin, attrs, opts \\ []) do
-    admin
+  def password_changeset(user, attrs, opts \\ []) do
+    user
     |> cast(attrs, [:password])
     |> validate_confirmation(:password, message: "does not match password")
     |> validate_password(opts)
@@ -106,18 +106,18 @@ defmodule PhoenixFromScratch.Accounts.Admin do
   @doc """
   Confirms the account by setting `confirmed_at`.
   """
-  def confirm_changeset(admin) do
+  def confirm_changeset(user) do
     now = NaiveDateTime.utc_now() |> NaiveDateTime.truncate(:second)
-    change(admin, confirmed_at: now)
+    change(user, confirmed_at: now)
   end
 
   @doc """
   Verifies the password.
 
-  If there is no admin or the admin doesn't have a password, we call
+  If there is no user or the user doesn't have a password, we call
   `Bcrypt.no_user_verify/0` to avoid timing attacks.
   """
-  def valid_password?(%PhoenixFromScratch.Accounts.Admin{hashed_password: hashed_password}, password)
+  def valid_password?(%PhoenixFromScratch.Accounts.User{hashed_password: hashed_password}, password)
       when is_binary(hashed_password) and byte_size(password) > 0 do
     Bcrypt.verify_pass(password, hashed_password)
   end

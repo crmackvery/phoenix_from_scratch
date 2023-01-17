@@ -21,7 +21,12 @@ defmodule PhoenixFromScratch.DetailsTest do
     end
 
     test "create_pet/1 with valid data creates a pet" do
-      valid_attrs = %{breed: "some breed", dob: ~N[2023-01-15 04:37:00], name: "some name", species: "some species"}
+      valid_attrs = %{
+        breed: "some breed",
+        dob: ~N[2023-01-15 04:37:00],
+        name: "some name",
+        species: "some species"
+      }
 
       assert {:ok, %Pet{} = pet} = Details.create_pet(valid_attrs)
       assert pet.breed == "some breed"
@@ -36,7 +41,13 @@ defmodule PhoenixFromScratch.DetailsTest do
 
     test "update_pet/2 with valid data updates the pet" do
       pet = pet_fixture()
-      update_attrs = %{breed: "some updated breed", dob: ~N[2023-01-16 04:37:00], name: "some updated name", species: "some updated species"}
+
+      update_attrs = %{
+        breed: "some updated breed",
+        dob: ~N[2023-01-16 04:37:00],
+        name: "some updated name",
+        species: "some updated species"
+      }
 
       assert {:ok, %Pet{} = pet} = Details.update_pet(pet, update_attrs)
       assert pet.breed == "some updated breed"

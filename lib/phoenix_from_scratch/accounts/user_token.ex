@@ -1,4 +1,5 @@
 defmodule PhoenixFromScratch.Accounts.UserToken do
+  @moduledoc false
   use PhoenixFromScratch.Schema
   import Ecto.Query
   alias PhoenixFromScratch.Accounts.UserToken

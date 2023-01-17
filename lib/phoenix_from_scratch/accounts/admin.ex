@@ -1,4 +1,5 @@
 defmodule PhoenixFromScratch.Accounts.Admin do
+  @moduledoc false
   use PhoenixFromScratch.Schema
   import Ecto.Changeset
 
@@ -117,7 +118,10 @@ defmodule PhoenixFromScratch.Accounts.Admin do
   If there is no admin or the admin doesn't have a password, we call
   `Bcrypt.no_user_verify/0` to avoid timing attacks.
   """
-  def valid_password?(%PhoenixFromScratch.Accounts.Admin{hashed_password: hashed_password}, password)
+  def valid_password?(
+        %PhoenixFromScratch.Accounts.Admin{hashed_password: hashed_password},
+        password
+      )
       when is_binary(hashed_password) and byte_size(password) > 0 do
     Bcrypt.verify_pass(password, hashed_password)
   end

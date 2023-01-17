@@ -1,4 +1,5 @@
 defmodule PhoenixFromScratchWeb.PetController do
+  @moduledoc false
   use PhoenixFromScratchWeb, :controller
 
   alias PhoenixFromScratch.Details

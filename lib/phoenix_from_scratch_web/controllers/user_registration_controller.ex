@@ -1,4 +1,5 @@
 defmodule PhoenixFromScratchWeb.UserRegistrationController do
+  @moduledoc false
   use PhoenixFromScratchWeb, :controller
 
   alias PhoenixFromScratch.Accounts

@@ -1,4 +1,5 @@
 defmodule PhoenixFromScratch.Accounts.UserNotifier do
+  @moduledoc false
   import Swoosh.Email
 
   alias PhoenixFromScratch.Mailer

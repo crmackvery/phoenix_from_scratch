@@ -13,7 +13,9 @@ defmodule PhoenixFromScratchWeb.AdminRegistrationControllerTest do
     end
 
     test "redirects if already logged in", %{conn: conn} do
-      conn = conn |> log_in_admin(admin_fixture()) |> get(Routes.admin_registration_path(conn, :new))
+      conn =
+        conn |> log_in_admin(admin_fixture()) |> get(Routes.admin_registration_path(conn, :new))
+
       assert redirected_to(conn) == "/"
     end
   end

@@ -1,6 +1,6 @@
 defmodule PhoenixFromScratch.Schema do
   @moduledoc """
-
+  Shared schema for inserting primary_key and other shared functions
   """
 
   defmacro __using__(_) do
@@ -10,5 +10,4 @@ defmodule PhoenixFromScratch.Schema do
       @foreign_key_type :binary_id
     end
   end
-
 end

@@ -1,4 +1,7 @@
 defmodule PhoenixFromScratch.Details.Pet do
+  @moduledoc """
+    Schema for Pet
+  """
   use PhoenixFromScratch.Schema
   import Ecto.Changeset
 

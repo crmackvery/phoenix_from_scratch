@@ -49,7 +49,9 @@ defmodule PhoenixFromScratch.MixProject do
       {:telemetry_poller, "~> 1.0"},
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
-      {:plug_cowboy, "~> 2.5"}
+      {:plug_cowboy, "~> 2.5"},
+      # dev and test dependencies
+      {:credo, "~> 1.6", only: [:dev, :test], runtime: false}
     ]
   end
 
@@ -65,7 +67,8 @@ defmodule PhoenixFromScratch.MixProject do
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
-      "assets.deploy": ["esbuild default --minify", "phx.digest"]
+      "assets.deploy": ["esbuild default --minify", "phx.digest"],
+      "format.credo": ["format", "credo"]
     ]
   end
 end

@@ -3,8 +3,18 @@ defmodule PhoenixFromScratchWeb.PetControllerTest do
 
   import PhoenixFromScratch.DetailsFixtures
 
-  @create_attrs %{breed: "some breed", dob: ~N[2023-01-15 04:37:00], name: "some name", species: "some species"}
-  @update_attrs %{breed: "some updated breed", dob: ~N[2023-01-16 04:37:00], name: "some updated name", species: "some updated species"}
+  @create_attrs %{
+    breed: "some breed",
+    dob: ~N[2023-01-15 04:37:00],
+    name: "some name",
+    species: "some species"
+  }
+  @update_attrs %{
+    breed: "some updated breed",
+    dob: ~N[2023-01-16 04:37:00],
+    name: "some updated name",
+    species: "some updated species"
+  }
   @invalid_attrs %{breed: nil, dob: nil, name: nil, species: nil}
 
   describe "index" do

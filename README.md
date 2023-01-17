@@ -29,13 +29,14 @@ See [the docs dir](docs/) for more details on various aspects of a basic Elixir/
 - [x] Admin login/authentication
 - [] Cloud provider
 - [] Terraform
-- [] Formatting; mix format.credo
+- [x] Formatting; mix format.credo
 - [] Docker deployments
 
 
 ## Tools/Libraries Used
 
-| Tool                                  | Useage                          |
+| Tool / Library                        | Useage                          |
 | ------------------------------------- | ------------------------------- |
 | [asdf](https://asdf-vm.com)           | Tool version manager            |
 | [Docker](https://www.docker.com)      | Containers                      |
+| [credo](https://github.com/rrrene/credo)      | Code formatting         |

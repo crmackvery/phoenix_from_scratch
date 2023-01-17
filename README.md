@@ -27,10 +27,12 @@ See [the docs dir](docs/) for more details on various aspects of a basic Elixir/
 - [x] Display table data (choose library)
 - [x] Accounts: admin, user
 - [x] Admin login/authentication
+- [] Add an API endpoint
 - [] Cloud provider
 - [] Terraform
 - [x] Formatting; mix format.credo
 - [] Docker deployments
+
 
 
 ## Tools/Libraries Used
